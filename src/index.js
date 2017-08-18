@@ -309,3 +309,90 @@
 //     b();
 //   });
 // });
+
+// =======================================================================================
+//
+// 12. Complex
+// 1503015356497
+// 1503015545110
+//
+// Chunks:
+// - main: a.js + index.js + stylis
+// - vendor: react + react-dom
+// - 0.chunk: styled-components (no react, react-dom, and no stylis), b.js
+// - 1.chunk: d.js
+// - 2.chunk: c.js
+// - 3.chunk: test/index.js
+// - 5.chunk: is-plain-object
+//
+// Chunks (with min size):
+// - main: a.js + index.js + stylis
+// - vendor: react + react-dom
+// - 0.chunk: styled-components (no react, react-dom, and no stylis) + b.js + c.js + d.js + e.js + test/index.js
+//
+// =======================================================================================
+
+// const a = require("./a");
+// const stylis = require("stylis");
+// a().then(function(module) {
+//   console.log(module);
+
+//   import("stylis").then(function(stylis) {
+//     console.log(stylis);
+//   });
+
+//   import("./c").then(function(module) {
+//     module();
+
+//     import("./d").then(function(module) {
+//       module();
+//     });
+//   });
+// });
+
+// import("test").then(function(module) {
+//   module();
+//   import("./b").then(function(b) {
+//     b();
+//   });
+// });
+
+// =======================================================================================
+//
+// 13. Complex 2
+// 1503015762814
+// 1503016006508
+//
+// Chunks:
+// - main: a.js + index.js + styled-components + b.js + d.js
+// - vendor: react + react-dom
+// - 0.chunk: e.js
+// - 1.chunk: c.js
+// - 2.chunk: test/index.js
+//
+// Chunks (with min size):
+// - main: a.js + index.js + styled-components + b.js + c.js + d.js e.js
+// - vendor: react + react-dom
+//
+// =======================================================================================
+
+const a = require("./a");
+const stylis = require("stylis");
+
+import("stylis").then(function(stylis) {
+  console.log(stylis);
+});
+
+a().then(function(module) {
+  console.log(module);
+
+  import("./c").then(function(module) {
+    module();
+    require("./d")();
+  });
+});
+
+import("test").then(function(module) {
+  module();
+  require("./b")();
+});
