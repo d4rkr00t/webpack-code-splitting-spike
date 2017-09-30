@@ -376,23 +376,88 @@
 //
 // =======================================================================================
 
-const a = require("./a");
-const stylis = require("stylis");
+// const a = require("./a");
+// const stylis = require("stylis");
 
-import("stylis").then(function(stylis) {
-  console.log(stylis);
-});
+// import("stylis").then(function(stylis) {
+//   console.log(stylis);
+// });
 
-a().then(function(module) {
-  console.log(module);
+// a().then(function(module) {
+//   console.log(module);
 
-  import("./c").then(function(module) {
-    module();
-    require("./d")();
-  });
-});
+//   import("./c").then(function(module) {
+//     module();
+//     require("./d")();
+//   });
+// });
 
-import("test").then(function(module) {
-  module();
-  require("./b")();
-});
+// import("test").then(function(module) {
+//   module();
+//   require("./b")();
+// });
+
+// =======================================================================================
+//
+// 14. Complex 3 – Named Chunks
+// 1506746844241
+// 1506746878039
+//
+// Chunks:
+// - main: a.js + index.js + styled-components + b.js + stylis
+// - vendor: react + react-dom
+// - some-chunk-0.chunk: d.js
+// - 1.chunk: test/index.js
+// - 3.chunk: e.js
+//
+// Chunks (with min size):
+// - main: a.js + index.js + styled-components + b.js + d.js e.js
+// - vendor: react + react-dom
+//
+// =======================================================================================
+
+// const a = require("./a");
+
+// import(/* webpackChunkName: "stylis" */ "stylis").then(function(stylis) {
+//   console.log(stylis);
+// });
+
+// a().then(function(module) {
+//   console.log(module);
+
+//   import(/* webpackChunkName: "some-chunk" */ "./d").then(function(module) {
+//     module();
+//   });
+// });
+
+// import("test").then(function(module) {
+//   module();
+//   require("./b")();
+// });
+
+// =======================================================================================
+//
+// 15. Complex 4 – Named Chunks 2
+// 1506747133532
+// 1506747167449
+//
+// Chunks:
+// - main: a.js + index.js + styled-components + b.js + d.js
+// - vendor: react + react-dom
+// - 0.chunk: stylis
+// - some-chunk-1.chunk: f.js
+//
+// Chunks (with min size):
+// - main: index.js
+// - some-chunk-0.chunk: stylis
+// - vendor: react + react-dom
+//
+// =======================================================================================
+
+// import(/* webpackChunkName: "stylis" */ "stylis").then(function(stylis) {
+//   console.log(stylis);
+// });
+
+// import(/* webpackChunkName: "some-chunk" */ "./f").then(function(module) {
+//   module();
+// });

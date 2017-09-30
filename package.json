@@ -2,7 +2,6 @@
   "name": "webpack-code-splitting-spike",
   "version": "0.0.0",
   "description": "",
-  "main": "webpack.config.js",
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -11,11 +10,8 @@
     "webpack": "^3.5.5",
     "webpack-bundle-analyzer": "^2.9.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "webpack -p",
     "start:min": "webpack -p --config webpack-min-chunk-size.config.js"
-  },
-  "author": "Stanislav Sysoev <@d4rkr00t>",
-  "license": "MIT"
+  }
 }
