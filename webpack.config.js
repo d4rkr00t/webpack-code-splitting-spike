@@ -11,7 +11,7 @@ module.exports = {
     vendor: ["react", "react-dom"]
   },
   output: {
-    chunkFilename: "[name]-[id].chunk.js",
+    chunkFilename: "[name].chunk.js",
     path: path.join(__dirname, "dist"),
     filename: "[name].js",
     publicPath: "/dist/"
