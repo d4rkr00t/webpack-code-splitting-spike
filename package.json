@@ -11,7 +11,8 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "scripts": {
-    "start": "webpack -p",
-    "start:min": "webpack -p --config webpack-min-chunk-size.config.js"
+    "start": "rm -rf dist && webpack -p",
+    "start:min":
+      "rm -rf dist && webpack -p --config webpack-min-chunk-size.config.js"
   }
 }
