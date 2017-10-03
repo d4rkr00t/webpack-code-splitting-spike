@@ -146,44 +146,31 @@ a().then(function(module) {
 // 7. Complex
 //
 // Chunks:
-// - main: a.js + index.js
+// - main: index.js + a.js + c.js + d.js
 // - vendor: react + react-dom
-// - 0.chunk: styled-components + stylis + is-plain-object + b.js
+// - 0.chunk: is-plain-object
 // - 1.chunk: stylis
-// - 2.chunk: d.js
-// - 3.chunk: c.js
-// - 4.chunk: test/index.js
-// - 6.chunk: is-plain-object
-// - 7.chunk: e.js
+// - 2.chunk: styled-components + stylis + is-plain-object
+// - 3.chunk: e.js
 //
 // Chunks (with min size):
-// - main: a.js + index.js + stylis
+// - main: a.js + index.js + stylis + d.js + c.js
 // - vendor: react + react-dom
-// - 0.chunk: styled-components + b.js + c.js + d.js + e.js + test/index.js + is-plain-object
+// - 0.chunk: styled-components + is-plain-object
 //
 // =======================================================================================
 
 // const a = require("./a");
+// const c = require("./c");
+// const d = require("./d");
+// d();
+// c();
+
 // a().then(function(module) {
 //   console.log(module);
 
 //   import("stylis").then(function(stylis) {
 //     console.log(stylis);
-//   });
-
-//   import("./c").then(function(module) {
-//     module();
-
-//     import("./d").then(function(module) {
-//       module();
-//     });
-//   });
-// });
-
-// import("test").then(function(module) {
-//   module();
-//   import("./b").then(function(b) {
-//     b();
 //   });
 // });
 
@@ -192,14 +179,17 @@ a().then(function(module) {
 // 8. Named Chunks
 //
 // Chunks:
-// - main: a.js + index.js + styled-components + b.js + stylis + is-plain-object
+// - main: a.js + index.js
 // - vendor: react + react-dom
 // - some-chunk.chunk: d.js
-// - 1.chunk: test/index.js
-// - 3.chunk: e.js
+// - stylis.chunk: stylis
+// - 1.chunk: styled-components + stylis + is-plain-object
+// - 4.chunk: is-plain-object
+// - 5.chunk: e.js
 //
 // Chunks (with min size):
-// - main: a.js + index.js + styled-components + b.js + d.js e.js + stylis + is-plain-object
+// - main: a.js + index.js + d.js + e.js + stylis
+// - 1.chunk: styled-components + is-plain-object
 // - vendor: react + react-dom
 //
 // =======================================================================================
@@ -216,9 +206,4 @@ a().then(function(module) {
 //   import(/* webpackChunkName: "some-chunk" */ "./d").then(function(module) {
 //     module();
 //   });
-// });
-
-// import("test").then(function(module) {
-//   module();
-//   require("./b")();
 // });
